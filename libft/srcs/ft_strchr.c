@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 03:04:56 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:29:50 by student          ###   ########.fr       */
+/*   Created: 2021/01/04 18:36:01 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/04 18:36:02 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	char	ch;
 
-	i = 0;
-	while (s && (s[i] != (unsigned char)c) && (s[i] != '\0'))
-		i++;
-	if (s && s[i] == (unsigned char)c)
-		return ((char *)s + i);
-	return (NULL);
+	ch = (char)c;
+	while (*s != ch)
+	{
+		s++;
+		if (*s == ch)
+			return ((char *)s);
+		if (*s == '\0')
+			return (NULL);
+	}
+	return ((char *)s);
 }
+/*
+** Return the pointer to s here conditioned by while loop.
+** If the first parameter is equal to ch, we should return it.
+*/

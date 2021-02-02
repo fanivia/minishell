@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 22:13:12 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 22:13:15 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:54:34 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:54:35 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,11 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	t_list	*tmp;
-
 	if (!lst || !f)
 		return ;
-	tmp = lst;
-	while (tmp)
+	while (lst)
 	{
-		f(tmp);
-		tmp = tmp->next;
+		f(lst->content);
+		lst = lst->next;
 	}
 }

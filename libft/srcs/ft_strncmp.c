@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 04:37:54 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:36:53 by student          ###   ########.fr       */
+/*   Created: 2021/01/05 16:51:42 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/05 16:51:45 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,25 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	int	i;
-	int	c;
-	int	ret;
+	unsigned char	*str_1;
+	unsigned char	*str_2;
 
-	i = 0;
-	if (n == 0)
+	str_1 = (unsigned char *)s1;
+	str_2 = (unsigned char *)s2;
+	if (str_1 == str_2 || n == 0)
 		return (0);
-	c = n - 1;
-	while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0') && (i != c))
-		i++;
-	ret = ((unsigned char *)s1)[i] - ((unsigned char *)s2)[i];
-	if (ret < 0)
-		return (-1);
-	if (ret == 0)
-		return (0);
-	return (1);
+	while (n >= 0 && *str_1 != '\0' && *str_2 != '\0')
+	{
+		if (n == 1 && (*str_1 - *str_2) == 0)
+			return (0);
+		if ((*str_1 - *str_2) == 0 && n > 0)
+		{
+			str_1++;
+			str_2++;
+		}
+		else
+			return (*str_1 - *str_2);
+		n--;
+	}
+	return (*str_1 - *str_2);
 }

@@ -12,49 +12,59 @@
 
 #include "get_next_line.h"
 
-static int		handle_line(char *s[], int fd)
+static int	ft_remainder_handl(char **str, char **line, char *tmp)
 {
-	char	*tmp;
+	char	*temp;
 
-	if (ft_is_in_stri('\n', s[fd]) >= 0)
+	*tmp++ = '\0';
+	*line = ft_strdup(*str);
+	if (*tmp == '\0')
 	{
-		tmp = s[fd];
-		s[fd] = ft_substr(s[fd], ft_is_in_stri('\n', s[fd]) + 1,
-							ft_strlen(s[fd]));
-		free(tmp);
+		free(*str);
+		*str = NULL;
+		return (1);
 	}
-	else if (ft_strlen(s[fd]) > 0)
-		ft_strdel(&s[fd]);
-	else
-	{
-		ft_strdel(&s[fd]);
-		return (FINISH);
-	}
-	return (SUCCESS);
+	temp = ft_strdup(tmp);
+	free(*str);
+	*str = temp;
+	return (1);
 }
 
-int				get_next_line(int fd, char **line)
+static int	ft_remainder(char **str, char **line)
 {
-	static char		*s[10240];
-	char			buf[BUFFER_SIZE + 1];
-	int				ret;
-	char			*tmp;
+	char *tmp;
 
-	if (fd < 0 || !line || BUFFER_SIZE < 1 || read(fd, buf, 0) < 0)
-		return (ERROR);
-	if (!s[fd] && !(s[fd] = ft_calloc(1, sizeof(char *))))
-		return (ERROR);
-	while ((ft_is_in_stri('\n', s[fd])) < 0 &&
-			(ret = read(fd, buf, BUFFER_SIZE)) > 0)
+	if (*str)
 	{
-		buf[ret] = '\0';
-		tmp = s[fd];
-		s[fd] = ft_strjoin(s[fd], buf);
-		free(tmp);
+		if ((tmp = ft_strchr(*str, '\n')))
+			return (ft_remainder_handl(str, line, tmp));
+		*line = *str;
+		*str = NULL;
+		return (0);
 	}
-	if (s[fd])
-		*line = ft_substr(s[fd], 0, ft_strlen_c(s[fd], '\n'));
-	if (!handle_line(s, fd))
-		return (FINISH);
-	return (SUCCESS);
+	*line = ft_strdup("");
+	return (0);
+}
+
+int			get_next_line(int fd, char **line)
+{
+	static char	*str[MAX_OPEN_FILES];
+	char		*tmp;
+	char		buf[BUFFER_SIZE + 1];
+	int			byte_was_read;
+
+	if (fd < 0 || !line || BUFFER_SIZE <= 0)
+		return (-1);
+	if ((read(fd, buf, 0)) < 0)
+		return (-1);
+	while ((byte_was_read = read(fd, buf, BUFFER_SIZE)) > 0)
+	{
+		buf[byte_was_read] = '\0';
+		str[fd] = ft_strjoin(str[fd], buf);
+		if ((tmp = ft_strchr(str[fd], '\n')))
+			return (ft_remainder_handl(&str[fd], line, tmp));
+	}
+	if (byte_was_read < 0)
+		return (-1);
+	return (ft_remainder(&str[fd], line));
 }

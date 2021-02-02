@@ -5,43 +5,39 @@
 #                                                     +:+ +:+         +:+      #
 #    By: fanivia <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2020/09/24 21:56:15 by fanivia           #+#    #+#              #
-#    Updated: 2020/09/24 21:56:18 by fanivia          ###   ########.fr        #
+#    Created: 2020/08/02 19:38:47 by fanivia           #+#    #+#              #
+#    Updated: 2020/08/02 20:41:32 by fanivia          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		= libftprintf.a
+NAME		=	libftprintf.a
 
-CFILES		= \
-					ft_printf.c \
-					ft_convert.c \
-					ft_convert_int.c \
-					ft_parse.c \
-					ft_utils.c \
-					utils.c
+C_FILES		= 	ft_printf.c ft_print_char.c ft_print_digit.c ft_print_hex.c \
+				ft_print_ptr.c ft_print_ud.c
 
-OFILES		= ${CFILES:.c=.o}
+O_FILES		=	${C_FILES:.c=.o}
 
-HEADER		= ../../includes
+HEADER		=	../../includes
 
-CC				= gcc
-CFLAGS		= -Wall -Werror -Wextra
-RM			= rm -f
+CC			=	gcc
+C_FLAGS		=	-Wall -Werror -Wextra
+RM			=	rm -f
 
-all:			${NAME}
+all:		$(NAME)
 
-${NAME}:		${OFILES}
-				@ar -rcs ${NAME} ${OFILES}
+$(NAME):	${O_FILES}
+			@ar rc $(NAME) ${O_FILES}
+			ranlib $(NAME)
 
 %.o: %.c
-					@${CC} ${CFLAGS} -I ${HEADER} -o $@ -c $<
+			${CC} -c ${C_FLAGS} -o $@ $< -I ${HEADER}
 
 clean:
-			@${RM} ${OFILES}
+			@${RM} ${O_FILES}
 
-fclean: 	clean
-				@${RM} ${NAME}
+fclean:		clean
+			@${RM} $(NAME)
 
-re: 		fclean all
+re:			fclean all
 
 .PHONY: all clean fclean re

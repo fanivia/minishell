@@ -3,58 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/02 22:46:11 by student           #+#    #+#             */
-/*   Updated: 2020/06/04 00:40:43 by student          ###   ########.fr       */
+/*   Created: 2021/01/14 20:45:40 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 18:17:09 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_whatcharsize(long n)
+static int	ft_size_of_int(int n)
 {
-	int i;
+	int size;
 
-	i = 0;
+	size = 0;
 	if (n == 0)
-	{
-		i = 1;
-		return (i);
-	}
+		return (size = 1);
 	if (n < 0)
-		i = 1;
+		size = 1;
 	while (n)
 	{
 		n = n / 10;
-		i++;
+		size++;
 	}
-	return (i);
+	return (size);
 }
 
-char			*ft_itoa(int n)
+char		*ft_itoa(int n)
 {
-	size_t			size;
-	char			*str;
-	long long int	n2;
+	size_t		size;
+	char		*str;
+	long int	num;
 
-	n2 = n;
-	size = ft_whatcharsize(n2);
-	str = (char*)malloc(sizeof(char) * (size + 1));
-	if (str == NULL)
+	num = n;
+	size = ft_size_of_int((int)num);
+	if (!(str = (char *)malloc(sizeof(char) * (size + 1))))
 		return (NULL);
-	if (n2 < 0)
+	str[size] = '\0';
+	if (num < 0)
 	{
 		str[0] = '-';
-		n2 = n2 * (-1);
+		num = num * (-1);
 	}
-	str[size] = '\0';
-	if (n2 == 0)
+	if (num == 0)
 		str[0] = '0';
-	while ((size--) && (n2 > 0))
+	while (size > 0 && num > 0)
 	{
-		str[size] = (n2 % 10) + 48;
-		n2 = n2 / 10;
+		size--;
+		str[size] = (char)((num % 10) + 48);
+		num = num / 10;
 	}
 	return (str);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lsrclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 21:55:53 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 21:55:56 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:54:12 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:54:13 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,15 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*tmp;
 
-	if (!lst || !del)
+	if (!lst || !*lst || !del)
 		return ;
-	tmp = *lst;
-	while (tmp)
+	while (*lst)
 	{
-		del(tmp->content);
-		free(tmp);
-		tmp = tmp->next;
+		tmp = (*lst)->next;
+		del((*lst)->content);
+		(*lst)->next = NULL;
+		free(*lst);
+		*lst = NULL;
+		*lst = tmp;
 	}
-	*lst = NULL;
 }

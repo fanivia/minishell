@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 07:33:00 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:02:30 by student          ###   ########.fr       */
+/*   Created: 2020/12/31 20:05:13 by fanivia           #+#    #+#             */
+/*   Updated: 2020/12/31 20:05:15 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	ft_isdigit(int c)
 {
-	if ((c > 47) && (c < 58))
+	unsigned char	ch;
+
+	ch = (unsigned char)c;
+	if (ch >= 060 && ch <= 071)
 		return (1);
 	return (0);
 }

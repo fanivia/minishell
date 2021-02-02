@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 17:52:05 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 17:52:08 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:52:57 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:52:59 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	if (!lst || !*lst || !new)
-		return ;
 	new->next = *lst;
 	*lst = new;
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 19:26:55 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 19:26:57 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:53:14 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:53:15 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int	ft_lstsize(t_list *lst)
 {
-	int		count;
-	t_list	*tmp;
+	int i;
 
-	tmp = lst;
-	count = 0;
-	while (tmp)
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst)
 	{
-		tmp = tmp->next;
-		count++;
+		i++;
+		lst = lst->next;
 	}
-	return (count);
+	return (i);
 }

@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/fanivia/Desktop/minishell/includes/minishell.h
+../libft/includes/libft.h
+/Users/fanivia/Desktop/minishell/libft/includes/libft.h
+../libft/includes/get_next_line.h
+/Users/fanivia/Desktop/minishell/libft/includes/get_next_line.h
+../libft/includes/ft_printf.h
+/Users/fanivia/Desktop/minishell/libft/includes/ft_printf.h
+
+/Users/fanivia/Desktop/minishell/libft/includes/ft_printf.h
+unistd.h
+-
+stdlib.h
+-
+stdarg.h
+-
+
+/Users/fanivia/Desktop/minishell/libft/includes/get_next_line.h
+unistd.h
+-
+stdlib.h
+-
+
+/Users/fanivia/Desktop/minishell/libft/includes/libft.h
+unistd.h
+-
+stdlib.h
+-
+
+/Users/fanivia/Desktop/minishell/srcs/main.c
+../includes/minishell.h
+/Users/fanivia/Desktop/minishell/includes/minishell.h
+

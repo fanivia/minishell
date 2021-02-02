@@ -5,36 +5,38 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 22:18:00 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 22:18:07 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:54:49 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:54:50 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstmap(t_list *lst, void *(f)(void *), void (*del)(void *))
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	**begin;
-	t_list	*temp1;
-	t_list	*temp2;
+	t_list	*new_lst;
+	t_list	*new_elem;
 
-	if (!(begin = (t_list **)malloc(sizeof(t_list))))
+	if (!lst || !f)
 		return (NULL);
-	if (!lst || !(*begin = ft_lstnew(f(lst->content))) || f == NULL)
+	new_elem = ft_lstnew(f(lst->content));
+	if (!new_elem)
+	{
+		ft_lstclear(&lst, del);
 		return (NULL);
+	}
+	new_lst = new_elem;
 	lst = lst->next;
-	temp1 = *begin;
 	while (lst)
 	{
-		temp2 = temp1;
-		if (!(temp1 = ft_lstnew(f(lst->content))))
+		if (!(new_elem = ft_lstnew(f(lst->content))))
 		{
-			ft_lstclear(begin, del);
-			return (NULL);
+			ft_lstclear(&lst, del);
+			ft_lstclear(&new_lst, del);
+			break ;
 		}
-		temp2->next = temp1;
 		lst = lst->next;
+		ft_lstadd_back(&new_lst, new_elem);
 	}
-	temp1->next = NULL;
-	return (*begin);
+	return (new_lst);
 }

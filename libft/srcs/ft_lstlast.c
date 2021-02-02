@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/11 19:35:58 by fanivia           #+#    #+#             */
-/*   Updated: 2020/09/11 19:36:01 by fanivia          ###   ########.fr       */
+/*   Created: 2021/01/17 20:53:26 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/17 20:53:27 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,9 @@
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*tmp;
-
-	tmp = lst;
-	if (!lst)
-		return (tmp);
-	while (tmp->next)
-		tmp = tmp->next;
-	return (tmp);
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }

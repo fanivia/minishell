@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/01 16:19:22 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:43:20 by student          ###   ########.fr       */
+/*   Created: 2021/01/02 18:44:29 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/02 18:44:31 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	ft_tolower(int c)
 {
-	if ((c > 64) && (c < 91))
-	{
-		c = c + 32;
-		return (c);
-	}
+	unsigned char	ch;
+
+	ch = (unsigned char)c;
+	if (ch >= 0101 && ch <= 0132)
+		return (ch + 040);
 	else
-		return (c);
+		return (ch);
 }

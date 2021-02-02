@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/02 19:10:22 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:31:50 by student          ###   ########.fr       */
+/*   Created: 2021/01/09 18:56:20 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/09 18:56:23 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,28 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*newstr;
-	size_t	i_s1;
-	size_t	i_s2;
+	char	*new;
+	size_t	i;
+	int		j;
 
-	if (s1 == NULL || s2 == NULL)
+	if (!s1 || !s2)
 		return (NULL);
-	i_s2 = ft_strlen(s2) + ft_strlen(s1);
-	if (!(newstr = (char*)malloc(sizeof(char) * (i_s2 + 1))))
+	i = ft_strlen(s1) + ft_strlen(s2);
+	if (!(new = (char *)malloc((i + 1) * sizeof(char))))
 		return (NULL);
-	i_s1 = 0;
-	i_s2 = 0;
-	while (s1[i_s1] != '\0')
+	i = 0;
+	while (s1[i])
 	{
-		newstr[i_s1] = s1[i_s1];
-		i_s1++;
+		new[i] = s1[i];
+		i++;
 	}
-	while (s2[i_s2] != '\0')
-		newstr[i_s1++] = s2[i_s2++];
-	newstr[i_s1] = '\0';
-	return (newstr);
+	j = 0;
+	while (s2[j])
+	{
+		new[i] = s2[j];
+		i++;
+		j++;
+	}
+	new[i] = '\0';
+	return (new);
 }

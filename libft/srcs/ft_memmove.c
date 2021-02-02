@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: student <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: fanivia <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/05/29 11:29:29 by student           #+#    #+#             */
-/*   Updated: 2020/06/03 23:15:40 by student          ###   ########.fr       */
+/*   Created: 2020/12/28 20:25:42 by fanivia           #+#    #+#             */
+/*   Updated: 2021/01/26 11:34:27 by fanivia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,21 @@
 
 void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	unsigned char	*dst1;
-	unsigned char	*src1;
+	unsigned char	*ptr_to_destination;
+	unsigned char	*ptr_to_source;
 
-	dst1 = (unsigned char *)dst;
-	src1 = (unsigned char *)src;
-	if (dst1 == src1)
+	if (dst == src || len == 0)
 		return (dst);
-	if (src >= dst)
-		while (len--)
-			*dst1++ = *src1++;
-	else
+	ptr_to_destination = (unsigned char *)dst;
+	ptr_to_source = (unsigned char *)src;
+	if (ptr_to_destination > ptr_to_source)
 	{
-		dst1 += len - 1;
-		src1 += len - 1;
-		while (len--)
-			*dst1-- = *src1--;
+		while (len && ptr_to_source[len - 1])
+		{
+			ptr_to_destination[len - 1] = ptr_to_source[len - 1];
+			len--;
+		}
 	}
-	return (dst);
+	ft_memcpy(ptr_to_destination, ptr_to_source, len);
+	return (ptr_to_destination);
 }
