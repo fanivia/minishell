@@ -143,6 +143,19 @@ minishell/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/minishell.dir/build.make CMakeFiles/minishell.dir/build
 .PHONY : minishell/fast
 
+#=============================================================================
+# Target rules for targets named libft
+
+# Build rule for target.
+libft: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 libft
+.PHONY : libft
+
+# fast build rule for target.
+libft/fast:
+	$(MAKE) $(MAKESILENT) -f libft/CMakeFiles/libft.dir/build.make libft/CMakeFiles/libft.dir/build
+.PHONY : libft/fast
+
 srcs/main.o: srcs/main.c.o
 
 .PHONY : srcs/main.o
@@ -178,6 +191,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... libft"
 	@echo "... minishell"
 	@echo "... srcs/main.o"
 	@echo "... srcs/main.i"

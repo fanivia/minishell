@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../libft/includes/libft.h
+unistd.h
+-
+stdlib.h
+-
+
+/Users/fanivia/Desktop/minishell/libft/srcs/ft_strchr.c
+libft.h
+/Users/fanivia/Desktop/minishell/libft/srcs/libft.h
+
+/Users/fanivia/Desktop/minishell/libft/srcs/ft_strjoin.c
+libft.h
+/Users/fanivia/Desktop/minishell/libft/srcs/libft.h
+

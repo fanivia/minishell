@@ -18,8 +18,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	i;
 	int		j;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
 		return (NULL);
+	if (!s1 || !s2)
+		return (!s1 ? ft_strdup(s2) : ft_strdup(s1));
 	i = ft_strlen(s1) + ft_strlen(s2);
 	if (!(new = (char *)malloc((i + 1) * sizeof(char))))
 		return (NULL);
@@ -37,5 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	new[i] = '\0';
+	if (s1)
+		free((void *)s1);
 	return (new);
 }

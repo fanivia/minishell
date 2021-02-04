@@ -207,10 +207,10 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
 //Value Computed by CMake
-minishell_BINARY_DIR:STATIC=/Users/fanivia/Desktop/minishell/cmake-build-debug
+minishell_BINARY_DIR:STATIC=/Users/fanivia/Desktop/minishell/cmake-build-debug/libft
 
 //Value Computed by CMake
-minishell_SOURCE_DIR:STATIC=/Users/fanivia/Desktop/minishell
+minishell_SOURCE_DIR:STATIC=/Users/fanivia/Desktop/minishell/libft
 
 
 ########################

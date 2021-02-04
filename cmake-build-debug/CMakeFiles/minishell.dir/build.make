@@ -99,6 +99,7 @@ minishell_EXTERNAL_OBJECTS =
 
 minishell: CMakeFiles/minishell.dir/srcs/main.c.o
 minishell: CMakeFiles/minishell.dir/build.make
+minishell: libft/liblibft.a
 minishell: CMakeFiles/minishell.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/fanivia/Desktop/minishell/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable minishell"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/minishell.dir/link.txt --verbose=$(VERBOSE)
